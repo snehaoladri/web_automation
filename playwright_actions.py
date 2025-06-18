@@ -46,8 +46,6 @@ def navigate_bunnings(product_name, recover=False):
                 "--ignore-certificate-errors",
                 "--disable-features=UseChromiumNetworkService,NetworkService",
                 "--disable-features=SitePerProcess,IsolateOrigins",
-                "--proxy-server='direct://'",
-                "--proxy-bypass-list=*",
                 "--window-size=1280,800"
             ]
         )
@@ -75,7 +73,7 @@ def navigate_bunnings(product_name, recover=False):
         try:
             # page.on("console", lambda msg: print(f"[Console] {msg.type}: {msg.text}"))
             print(f"[INFO] Navigating to Bunnings homepage...")
-            page.goto("http://www.bunnings.com.au", wait_until='load',timeout=200000)
+            page.goto("https://www.bunnings.com.au", wait_until='load',timeout=200000)
             page.screenshot(path="bunnings.png")
             # page.wait_for_function(
             #     """() => document.querySelector("input[placeholder='Search']") !== null""",timeout=200000

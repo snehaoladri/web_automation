@@ -10,7 +10,7 @@ search_tool = Tool(
 )
 
 def run_navigation(product_name):
-    llm = Ollama(model="llama3",base_url="http://ollama:11434")
+    llm = Ollama(model="llama2:7b",base_url="http://localhost:11434")
 
     agent = initialize_agent(
         tools=[search_tool],
