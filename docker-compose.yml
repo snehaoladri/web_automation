@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+
+  ai-navigator:
+    build: .
+    container_name: ai-navigator
+    ports:
+      - "8501:8501"
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_API=http://ollama:11434
+    command: >
+      sh -c "
+      until curl -s http://ollama:11434; do echo 'Waiting for Ollama...'; sleep 2; done &&
+      curl -X POST http://ollama:11434/api/pull -d '{"name": "llama3"}' &&
+      streamlit run main.py"
+    volumes:
+      - .:/app
+    working_dir: /app
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ~/.ollama:/root/.ollama
+    restart: unless-stopped
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
