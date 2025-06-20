@@ -6,7 +6,9 @@ This version runs **fully offline** using `llama3` via Ollama and automates prod
 
 - [Ollama](https://ollama.com) (to run llama3 model)
   ```bash
-  brew install ollama  # or follow your OS instructions
+  apt-get update && sudo apt-get install -y curl gpg
+  curl -fsSL https://ollama.com/install.sh | sh
+  ollama serve
   ollama pull llama3
   ```
 
@@ -19,6 +21,9 @@ This version runs **fully offline** using `llama3` via Ollama and automates prod
 
 ## 🚀 Run Locally
 
+ollama serve
+In new terminal
+- streamlit run main.py
 ### Build Image
 ```bash
 docker build --network=host -t bunnings-navigator-local .

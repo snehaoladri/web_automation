@@ -3,10 +3,10 @@
 set -e
 
 echo "[INFO] Updating apt sources to use HTTPS..."
-sudo find /etc/apt/ -name '*.list' -exec sed -i 's|http://|https://|g' {} +
+find /etc/apt/ -name '*.list' -exec sed -i 's|http://|https://|g' {} +
 
 echo "[INFO] Updating system and installing dependencies..."
-sudo apt-get update && sudo apt-get install -y \
+apt-get update && sudo apt-get install -y \
   curl gnupg ca-certificates \
   libcups2 libnss3 libnspr4 libdbus-1-3 libatk1.0-0 libatk-bridge2.0-0 \
   libatspi2.0-0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 \
@@ -22,7 +22,7 @@ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dear
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-linux-signing-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list > /dev/null
 sudo apt-get update && sudo apt-get install -y google-chrome-stable && sudo rm -rf /var/lib/apt/lists/*
 echo "[INFO] Installing dependencies..."
-sudo apt-get update && sudo apt-get install -y curl gpg
+apt-get update && sudo apt-get install -y curl gpg
 
 echo "[INFO] Installing Ollama via shell script..."
 curl -fsSL https://ollama.com/install.sh | sh
