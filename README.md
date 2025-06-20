@@ -38,6 +38,7 @@ Make sure Ollama is running on the host.
 
 ## ✅ Features
 
+- Entity prediction for User query, which helps in facet search. And query rephrasing
 - Accepts dynamic product name
 - LangChain agent (ZERO_SHOT_REACT_DESCRIPTION)
 - Local reasoning via llama3
